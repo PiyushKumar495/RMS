@@ -64,8 +64,6 @@ _Your one-stop solution for smooth, digital railway experiences._
 
 ## 🗂️ Project Structure
 
-<details>
-<summary><strong>📁 Click to Expand Project Tree</strong></summary>
 
 ```txt
 RMS/
@@ -103,9 +101,9 @@ RMS/
 ├── Web.config
 ├── packages.config
 └── README.md
-
-</details>
 ```
+
+
 
 For up-to-date listings, visit each folder directly in the [GitHub repository UI](https://github.com/PiyushKumar495/RMS).
 

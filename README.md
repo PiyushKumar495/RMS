@@ -64,7 +64,10 @@ _Your one-stop solution for smooth, digital railway experiences._
 
 ## 🗂️ **Project Structure**
 
+
+
 ```
+
 # 📂 RMS Folder Structure
 
 Here's an overview of the core folder structure inside your project, based on the latest repository contents:
@@ -77,7 +80,7 @@ Here's an overview of the core folder structure inside your project, based on th
 │   ├── CancellationController.cs
 │   ├── HomeController.cs
 │   └── TrainController.cs
-/
+│
 /Models
 │   ├── BookingViewModel.cs
 │   ├── Bookings.cs
@@ -85,23 +88,25 @@ Here's an overview of the core folder structure inside your project, based on th
 │   ├── RailwayDBContext.cs
 │   ├── Trains.cs
 │   └── Users.cs
-/
+│
 /Views
-│   ├── Account/           # Views related to Account actions
-│   ├── Admin/             # Views for Admin management
-│   ├── Booking/           # Views for Booking operations
-│   ├── Cancellation/      # Views for Ticket Cancellation
-│   ├── Home/              # Home page views
-│   ├── Shared/            # Shared layout and components
-│   ├── Train/             # Views for Train CRUD
+│   ├── Account/         # Views related to Account actions
+│   ├── Admin/           # Views for Admin management
+│   ├── Booking/         # Views for Booking operations
+│   ├── Cancellation/    # Views for Ticket Cancellation
+│   ├── Home/            # Home page views
+│   ├── Shared/          # Shared layout and components
+│   ├── Train/           # Views for Train CRUD
 │   ├── Web.config
 │   └── _ViewStart.cshtml
-/
+│
 /App_Data
     (You may place your database/data scripts here)
 ```
 
 For up-to-date listings, visit each folder directly in the [GitHub repository UI](https://github.com/PiyushKumar495/RMS).
+
+
 ---
 
 ## 🤝 **Contributing**

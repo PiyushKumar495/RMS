@@ -73,7 +73,8 @@ _Your one-stop solution for smooth, digital railway experiences._
 Here's an overview of the core folder structure inside your project, based on the latest repository contents:
 
 ```
-/Controllers
+RMS/
+├── 📁 Controllers/                  # Handles request/response logic
 │   ├── AccountController.cs
 │   ├── AdminController.cs
 │   ├── BookingController.cs
@@ -81,7 +82,7 @@ Here's an overview of the core folder structure inside your project, based on th
 │   ├── HomeController.cs
 │   └── TrainController.cs
 │
-/Models
+├── 📁 Models/                       # Entity models & DB context
 │   ├── BookingViewModel.cs
 │   ├── Bookings.cs
 │   ├── Passengers.cs
@@ -89,19 +90,25 @@ Here's an overview of the core folder structure inside your project, based on th
 │   ├── Trains.cs
 │   └── Users.cs
 │
-/Views
-│   ├── Account/         # Views related to Account actions
-│   ├── Admin/           # Views for Admin management
-│   ├── Booking/         # Views for Booking operations
-│   ├── Cancellation/    # Views for Ticket Cancellation
-│   ├── Home/            # Home page views
-│   ├── Shared/          # Shared layout and components
-│   ├── Train/           # Views for Train CRUD
+├── 📁 Views/                        # Razor views (UI layer)
+│   ├── Account/
+│   ├── Admin/
+│   ├── Booking/
+│   ├── Cancellation/
+│   ├── Home/
+│   ├── Shared/                     # Layouts, partials
+│   ├── Train/
 │   ├── Web.config
 │   └── _ViewStart.cshtml
 │
-/App_Data
-    (You may place your database/data scripts here)
+├── 📁 Scripts/                      # JavaScript files
+├── 📁 Content/                      # CSS, images, static files
+├── 📁 App_Data/                     # (Optional) DB scripts / seed data
+│
+├── Web.config                       # App configuration
+├── packages.config                  # NuGet package references
+└── README.md
+
 ```
 
 For up-to-date listings, visit each folder directly in the [GitHub repository UI](https://github.com/PiyushKumar495/RMS).

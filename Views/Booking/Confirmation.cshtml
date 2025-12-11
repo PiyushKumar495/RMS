@@ -1,0 +1,27 @@
+﻿@model RailwayManagement.Models.Bookings
+
+<h2>Booking Confirmation</h2>
+<p><strong>PNR Number:</strong> @Model.Pnrnumber</p>
+<p><strong>Train:</strong> @Model.Train.TrainName</p>
+<p><strong>Journey Date:</strong> @Model.JourneyDate.ToString("yyyy-MM-dd")</p>
+<p><strong>Total Tickets:</strong> @Model.TotalTickets</p>
+<p><strong>Total Fare:</strong> ₹@Model.TotalAmount</p>
+
+<h3>Passenger Details</h3>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+    </tr>
+    @foreach (var passenger in Model.Passengers)
+    {
+        <tr>
+            <td>@passenger.Name</td>
+            <td>@passenger.Age</td>
+            <td>@(passenger.Gender ? "Male" : "Female")</td>
+        </tr>
+    }
+</table>
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Home</a>

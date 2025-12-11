@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RailwayManagement.Models.Trains>
+
+<h2>Available Trains</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Train Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Available Seats</th>
+                <th>Fare</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var train in Model)
+            {
+                <tr>
+                    <td>@train.TrainName</td>
+                    <td>@train.SourceStation</td>
+                    <td>@train.DestinationStation</td>
+                    <td>@train.DepartureTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@train.ArrivalTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@(train.LadiesSeats + train.GeneralSeats)</td>
+                    <td>@train.TicketFare.ToString("C")</td>
+                    <td>
+                        <a href="@Url.Action("Book", "Booking", new { id = train.TrainId })" class="btn btn-warning">Book Train</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Search PNR";
+}
+
+<h2>Search PNR</h2>
+
+<form method="post">
+    <label for="pnrNumber">Enter PNR Number:</label>
+    <input type="text" name="pnrNumber" required />
+    <button type="submit">Search</button>
+</form>
+
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+
+@if (ViewBag.Booking != null)
+{
+    <h3>Booking Details</h3>
+    <p><strong>Booking ID:</strong> @ViewBag.Booking.BookingId</p>
+    <p><strong>Train ID:</strong> @ViewBag.Booking.TrainId</p>
+    <p><strong>Booking Date:</strong> @ViewBag.Booking.BookingDate.ToShortDateString()</p>
+    <p><strong>Ticket Status:</strong> @(ViewBag.Booking.BookingStatus ? "Confirmed" : "Pending")</p>
+
+    <h3>Train Details</h3>
+    <p><strong>Train Name:</strong> @ViewBag.Train.TrainName</p>
+    <p><strong>Departure:</strong> @ViewBag.Train.DepartureTime</p>
+    <p><strong>Arrival:</strong> @ViewBag.Train.ArrivalTime</p>
+
+    <h3>Passenger Details</h3>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr>
+        @foreach (var passenger in ViewBag.Passengers)
+        {
+            <tr>
+                <td>@passenger.Name</td>
+                <td>@passenger.Age</td>
+                <td>@(passenger.Gender ? "Male" : "Female")</td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,37 @@
+﻿@model RailwayManagement.Models.Users
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">@ViewBag.Message</p>
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", required = "required" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.PhoneNumber)
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", required = "required" })
+    </div>
+
+    <!-- Hidden field to set default role as 'User' -->
+    @Html.HiddenFor(m => m.Role, new { Value = "User" })
+
+    <button type="submit" class="btn btn-primary">Register</button>
+}

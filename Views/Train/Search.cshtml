@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Train Search";
+}
+
+<h2>Search Trains</h2>
+
+<form method="post" action="@Url.Action("SearchResults", "Train")">
+    <label>Source:</label>
+    <select name="source">
+        @foreach (var station in ViewBag.Stations1)
+        {
+            <option value="@station">@station</option>
+        }
+    </select>
+
+    <label>Destination:</label>
+    <select name="destination">
+        @foreach (var station in ViewBag.Stations2)
+        {
+            <option value="@station">@station</option>
+        }
+    </select>
+
+    <label>Travel Date:</label>
+    <input type="date" name="travelDate" required />
+
+    <button type="submit">Search</button>
+</form>

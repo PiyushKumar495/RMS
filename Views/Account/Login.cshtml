@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">@ViewBag.Message</p>
+}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div>
+        @Html.Label("Email")
+        <input type="email" name="email" class="form-control" required />
+    </div>
+    <div>
+        @Html.Label("Password")
+        <input type="password" name="password" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+}
+
+<p>Don't have an account? <a href="@Url.Action("Register", "Account")">Register here</a></p>

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Railway Reservation System";
+}
+
+<main>
+    <section class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the Railway Reservation System</h1>
+        <p class="lead">Book your train tickets easily and manage your reservations hassle-free.</p>
+        <a href="@Url.Action("Search", "Train")" class="btn btn-primary">Book a Ticket</a>
+        <a href="@Url.Action("SearchPNR", "Train")" class="btn btn-secondary btn-lg">Check PNR Status</a>
+    </section>
+
+    <div class="row">
+        <section class="col-md-6">
+            <h2>Easy Booking</h2>
+            <p>Reserve train tickets in just a few clicks. Choose your destination and travel class.</p>
+        </section>
+        <section class="col-md-6">
+            <h2>Manage Reservations</h2>
+            <p>Modify or cancel your bookings and get instant confirmation.</p>
+        </section>
+    </div>
+</main>

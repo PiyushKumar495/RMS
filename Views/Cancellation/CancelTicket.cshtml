@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "CancelTicket";
+}
+
+<h2>CancelTicket</h2>
+
+
+<div class="container mt-4">
+    <h2>Cancel Ticket</h2>
+
+    @if (Model != null)
+    {
+        if (Model.CancellationStatus)
+        {
+            <div class="alert alert-warning">
+                This ticket has already been cancelled.
+            </div>
+        }
+        else if (Model.JourneyDate < DateTime.Now)
+        {
+            <div class="alert alert-danger">
+                Cannot cancel ticket for past journeys.
+            </div>
+        }
+        else
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ticket Details</h5>
+                    <dl class="row">
+                        <dt class="col-sm-3">PNR Number</dt>
+                        <dd class="col-sm-9">@Model.Pnrnumber</dd>
+
+                        <dt class="col-sm-3">Train</dt>
+                        <dd class="col-sm-9">@Model.Train.TrainName</dd>
+
+                        <dt class="col-sm-3">Journey Date</dt>
+                        <dd class="col-sm-9">@Model.JourneyDate.ToString("dd/MM/yyyy")</dd>
+
+                        <dt class="col-sm-3">Total Amount</dt>
+                        <dd class="col-sm-9">₹@Model.TotalAmount</dd>
+                    </dl>
+
+                    <div class="alert alert-info">
+                        <p>Are you sure you want to cancel this ticket?</p>
+                        <p>Note: A cancellation fee may be applicable based on the time of cancellation.</p>
+                    </div>
+
+                    @using (Html.BeginForm("ConfirmCancellation", "Cancellation", new { pnr = Model.Pnrnumber }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Confirm Cancellation</button>
+                        @Html.ActionLink("Back to Bookings", "MyBookings", "Booking", null, new { @class = "btn btn-secondary" })
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            Ticket not found. Please check your PNR number and try again.
+        </div>
+    }
+</div> 

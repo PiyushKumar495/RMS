@@ -1,0 +1,54 @@
+﻿@model RailwayManagement.Models.Trains
+
+@{
+    ViewBag.Title = "Add Train";
+}
+
+<h2>Add New Train</h2>
+
+@using (Html.BeginForm("Create", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Train Name</label>
+        @Html.TextBoxFor(m => m.TrainName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Source Station</label>
+        @Html.TextBoxFor(m => m.SourceStation, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Destination Station</label>
+        @Html.TextBoxFor(m => m.DestinationStation, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Departure Time</label>
+        @Html.TextBoxFor(m => m.DepartureTime, new { @class = "form-control", type = "datetime-local" })
+    </div>
+
+    <div class="form-group">
+        <label>Arrival Time</label>
+        @Html.TextBoxFor(m => m.ArrivalTime, new { @class = "form-control", type = "datetime-local" })
+    </div>
+
+    <div class="form-group">
+        <label>General Seats</label>
+        @Html.TextBoxFor(m => m.GeneralSeats, new { @class = "form-control", type = "number" })
+    </div>
+
+    <div class="form-group">
+        <label>Ladies Seats</label>
+        @Html.TextBoxFor(m => m.LadiesSeats, new { @class = "form-control", type = "number" })
+    </div>
+
+    <div class="form-group">
+        <label>Ticket Fare</label>
+        @Html.TextBoxFor(m => m.TicketFare, new { @class = "form-control", type = "number" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

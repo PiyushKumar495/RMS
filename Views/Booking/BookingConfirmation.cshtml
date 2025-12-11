@@ -1,0 +1,41 @@
+﻿@model RailwayManagement.Models.Bookings
+
+<h2>Booking Confirmation</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">@ViewBag.Message</div>
+}
+
+<h3>PNR Number: @Model.Pnrnumber</h3>
+<h4>Train: @Model.Train.TrainName</h4>
+<h4>Total Tickets: @Model.TotalTickets</h4>
+<h4>Total Fare: ₹@Model.TotalAmount</h4>
+
+<h3>Passenger Details</h3>
+@if (Model.Passengers != null && Model.Passengers.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Passengers)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@p.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No passenger details available.</p>
+}
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary">Go Home</a>

@@ -1,0 +1,118 @@
+﻿@model RailwayManagement.Models.Bookings
+
+<h2>Book Train</h2>
+
+<!-- Display Train Details -->
+<table class="table">
+    <tr>
+        <th>Train Name</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Departure Date</th>
+        <th>Available Seats</th>
+    </tr>
+    @if (Model.Train != null)
+    {
+        <tr>
+            <td>@Model.Train.TrainName</td>
+            <td>@Model.Train.SourceStation</td>
+            <td>@Model.Train.DestinationStation</td>
+            <td>@Model.Train.DepartureTime.ToString("yyyy-MM-dd")</td> <!-- Date only -->
+            <td id="availableSeats">@Model.Train.AvailableSeats</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td colspan="5" class="text-danger">Train details not available</td>
+        </tr>
+    }
+</table>
+@using (Html.BeginForm("Book", "Booking", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.TrainId)
+
+    <div class="form-group">
+        <label>Journey Date:</label>
+        @Html.TextBoxFor(m => m.JourneyDate, new { @class = "form-control", type = "date", Value = Model.Train.DepartureTime.ToString("yyyy-MM-dd"), @readonly = "readonly" })
+    </div>
+
+    <h4>Passenger Details</h4>
+    <div id="passengerList"></div>
+
+    <button type="button" id="addPassenger" class="btn btn-primary">Add Passenger</button>
+    <div id="ladiesQuota" style="display: none;">
+        <label><input type="checkbox" name="IsLadiesQuota" value="true" /> Apply for Ladies Quota</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Confirm Booking</button>
+}
+
+<script>
+    let passengerCount = 0;
+    const maxPassengers = 6;
+
+    function updatePassengerIndexes() {
+        let passengers = document.querySelectorAll("#passengerList > div");
+        passengers.forEach((passenger, index) => {
+            passenger.querySelector("input[name*='Name']").setAttribute("name", `Passengers[${index}].Name`);
+            passenger.querySelector("input[name*='Age']").setAttribute("name", `Passengers[${index}].Age`);
+            passenger.querySelector("select[name*='Gender']").setAttribute("name", `Passengers[${index}].Gender`);
+        });
+    }
+
+    document.getElementById("addPassenger").addEventListener("click", function () {
+        if (passengerCount >= maxPassengers) {
+            alert("Maximum 6 passengers allowed!");
+            return;
+        }
+
+        let passengerDiv = document.createElement("div");
+        passengerDiv.classList.add("passenger-entry");
+        passengerDiv.innerHTML = `
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="Passengers[${passengerCount}].Name" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" name="Passengers[${passengerCount}].Age" class="form-control" min="1" max="100" required />
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <select name="Passengers[${passengerCount}].Gender" class="form-control" onchange="checkLadiesQuota()">
+                    <option value="true">Male</option>
+                    <option value="false">Female</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-danger btn-sm removePassenger">Remove</button>
+        `;
+
+        document.getElementById("passengerList").appendChild(passengerDiv);
+        passengerCount++;
+
+        // Attach remove event
+        passengerDiv.querySelector(".removePassenger").addEventListener("click", function () {
+            passengerDiv.remove();
+            passengerCount--;
+            updatePassengerIndexes();
+            checkLadiesQuota();
+        });
+
+        updatePassengerIndexes();
+    });
+
+    function checkLadiesQuota() {
+        let allFemale = true; // Assume all are female initially
+
+        document.querySelectorAll("#passengerList select").forEach(select => {
+            if (select.value === "true") { // If any passenger is male
+                allFemale = false;
+            }
+        });
+
+        document.getElementById("ladiesQuota").style.display = allFemale && passengerCount > 0 ? "inline-block" : "none";
+    }
+
+</script>

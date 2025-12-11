@@ -62,19 +62,12 @@ _Your one-stop solution for smooth, digital railway experiences._
 
 ---
 
-## 🗂️ **Project Structure**
+## 🗂️ Project Structure
 
+<details>
+<summary><strong>📁 Click to Expand Project Tree</strong></summary>
 
-
-```
-
-# 📂 RMS Folder Structure
-
-Here's an overview of the core folder structure inside your project, based on the latest repository contents:
-
-
-<details> <summary><strong>📁 Click to Expand Project Tree</strong></summary>
-```
+```txt
 RMS/
 ├── Controllers/
 │   ├── AccountController.cs
